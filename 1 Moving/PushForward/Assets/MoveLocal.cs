@@ -28,9 +28,9 @@ public class MoveLocal : MonoBehaviour
                                                 Quaternion.LookRotation(direction), 
                                                 Time.deltaTime * rotSpeed);
         //Translate between this and the goal in the x-z plane, stopping when within acciracy
-        if (Vector3.Distance(transform.position, LookAtgoal) > accuracy){
-            this.transform.Translate(0, 0, speed * Time.deltaTime);
+        //if (vector3.distance(transform.position, lookatgoal) > accuracy){
+        //    this.transform.translate(0, 0, speed * time.deltatime);
 
-        }
+        //}
     }
 }
