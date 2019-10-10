@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lightCardOrange_A
+  m_Name: Red
   m_Shader: {fileID: 14, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -32,7 +32,7 @@ Material:
     - _EmissionLM: 2.75
     - _Shininess: 0.7
     m_Colors:
-    - _Color: {r: 1, g: 0.83770823, b: 0.67450976, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.23277283, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
