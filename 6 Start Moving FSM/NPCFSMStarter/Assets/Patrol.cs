@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : StateMachineBehaviour
+public class Patrol : NPCBaseFSM
 {
-    GameObject NPC;
     GameObject[] waypoints;
     int currentWP;
 
@@ -16,7 +15,7 @@ public class Patrol : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC = animator.gameObject;
+        base.OnStateEnter(animator, stateInfo, layerIndex);
         currentWP = 0;
     }
 
@@ -24,7 +23,7 @@ public class Patrol : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (waypoints.Length == 0) return;
-        if(Vector3.Distance(waypoints[currentWP].transform.position, NPC.transform.position) < 3f)
+        if(Vector3.Distance(waypoints[currentWP].transform.position, NPC.transform.position) < accuracy)
         {
             currentWP++;
             if(currentWP >= waypoints.Length)
@@ -37,8 +36,8 @@ public class Patrol : StateMachineBehaviour
         var direction = waypoints[currentWP].transform.position - NPC.transform.position;
         NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, 
                                                     Quaternion.LookRotation(direction), 
-                                                    1f * Time.deltaTime);
-        NPC.transform.Translate(0, 0, 2f * Time.deltaTime);
+                                                    rotSpeed * Time.deltaTime);
+        NPC.transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
