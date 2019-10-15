@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class TankAI : MonoBehaviour
 {
     Animator anim;
     public GameObject player;
-
+    public GameObject bullet;
+    public GameObject turret;
     public GameObject GetPlayer()
     {
         return player;
@@ -21,5 +23,21 @@ public class TankAI : MonoBehaviour
     void Update()
     {
         anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+    }
+
+    void Fire()
+    {
+        GameObject b = Instantiate(bullet, turret.transform.position, turret.transform.rotation);
+        b.GetComponent<Rigidbody>().AddForce(turret.transform.forward * 500);
+    }
+
+    public void StartFiring()
+    {
+        InvokeRepeating("Fire", .5f, .5f);
+    }
+
+    public void StopFiring()
+    {
+        CancelInvoke("Fire");
     }
 }
