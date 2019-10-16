@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Patrol : NPCBaseFSM
 {
+    
     GameObject[] waypoints;
     int currentWP;
 
@@ -32,12 +33,13 @@ public class Patrol : NPCBaseFSM
             }
         }
 
-        //rotate towards target
-        var direction = waypoints[currentWP].transform.position - NPC.transform.position;
-        NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, 
-                                                    Quaternion.LookRotation(direction), 
-                                                    rotSpeed * Time.deltaTime);
-        NPC.transform.Translate(0, 0, speed * Time.deltaTime);
+        agent.SetDestination(waypoints[currentWP].transform.position);
+        ////rotate towards target
+        //var direction = waypoints[currentWP].transform.position - NPC.transform.position;
+        //NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, 
+        //                                            Quaternion.LookRotation(direction), 
+        //                                            rotSpeed * Time.deltaTime);
+        //NPC.transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
